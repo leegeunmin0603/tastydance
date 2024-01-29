@@ -17,31 +17,21 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CompanyCard } from 'src/sections/companies/company-card';
 import { CompaniesSearch } from 'src/sections/companies/companies-search';
 
-const companies = [
-  {
-    id: '1',
-    description: 'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
-    logo: 'https://m.pinktree.kr/web/product/big/tf428good500.jpg',    
-    link: 'blog.naver.com/tastydance/223329259664',
-    title: 'Dropbox'
-  },
-  {
-    id: '2',
-    description: 'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
-    logo: 'https://postfiles.pstatic.net/MjAyNDAxMTVfMTQ4/MDAxNzA1MzA0MTA5ODc0.Cmq5yw7jbpzeUxUgygDanv55X7LKI7NZckj82rGub_Mg.7SnLJc3I1ZuggVIG9Ij3ygUGWZAtkBsN4PKUoa9XUTwg.PNG.tastydance23/image.png?type=w773',
-    link: 'blog.naver.com/tastydance/223333867255',
-    title: 'Medium Corporation'
-  }
-  
-];
-
 const Page = () => {
-  // const [showCompanies, setShowCompanies] = useState(true);
+
+  const [searchResults, setSearchResults] = useState([]); // 검색 결과 상태
+
+  // 검색 결과를 설정하는 콜백 함수
+  const handleSearchResults = (results) => {
+    
+    // console.log(search_research);
+    setSearchResults(results);
+  };
 
   return (
     <>
       <Head>
-        <title>Companies | Devias Kit</title>
+        <title>소시지 정보 검색 | Devias Kit</title>
       </Head>
       <Box component="main" sx={{ flexGrow: 1, py: 8 }}>
         <Container maxWidth="xl">
@@ -53,10 +43,11 @@ const Page = () => {
               </Stack>
               
             </Stack>
-            <CompaniesSearch />
-            {(
+            {/* 콜백 함수 전달 */}
+            <CompaniesSearch setSearchResult={handleSearchResults} /> 
+            {searchResults.length > 0 && ( // 검색 결과가 있을 때만 출력
               <Grid container spacing={3}>
-                {companies.map((company) => (
+                {searchResults.map((company) => (
                   <Grid xs={12} md={6} lg={4} key={company.id}>
                     <CompanyCard company={company} />
                   </Grid>
