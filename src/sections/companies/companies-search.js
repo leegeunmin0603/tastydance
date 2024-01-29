@@ -16,7 +16,7 @@ export const CompaniesSearch = ({setSearchResult}) => {
       if(searchKeyword == '')
       {
         // Axios를 사용하여 서버의 get_all_data 엔드포인트에 GET 요청.
-        response = await axios.get(`http://localhost:8070/essearch/get_all_data?indexName=${indexName}`);
+        response = await axios.get(`http://59.11.252.124:8070/essearch/get_all_data?indexName=${indexName}`);
 
         // 요청이 성공하면 응답 데이터는 response.data
         
@@ -25,7 +25,7 @@ export const CompaniesSearch = ({setSearchResult}) => {
       {
         console.log('검색어:', searchKeyword);
         const fieldValue = 'title';        
-        response = await axios.get(`http://localhost:8070/essearch/get_keyword?indexName=${indexName}&field=${fieldValue}&keyword=${searchKeyword}`);
+        response = await axios.get(`http://59.11.252.124:8070/essearch/get_keyword?indexName=${indexName}&field=${fieldValue}&keyword=${searchKeyword}`);
         
       }
       
