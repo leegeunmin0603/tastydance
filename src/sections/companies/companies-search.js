@@ -50,7 +50,7 @@ export const CompaniesSearch = ({setSearchResult}) => {
     <Card sx={{ p: 2 }}>
       <OutlinedInput
         fullWidth
-        placeholder="Search company"
+        placeholder="소시지 이름을 검색하세요."
         startAdornment={(
           <InputAdornment position="start">
             <SvgIcon
