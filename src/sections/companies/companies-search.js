@@ -5,28 +5,21 @@ import axios from 'axios'; // axios를 import
 
 export const CompaniesSearch = ({setSearchResult}) => {
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색어 상태 추가
-  
-  
   const handleSearch = async () => {
     try {
       // 검색 버튼 클릭 시 처리 로직을 여기에 추가
       const indexName = 'tastydance_sausage';
-
       let response = [];
       if(searchKeyword == '')
       {
         // Axios를 사용하여 서버의 get_all_data 엔드포인트에 GET 요청.
         response = await axios.get(`http://59.11.252.124:8070/essearch/get_all_data?indexName=${indexName}`);
-
-        // 요청이 성공하면 응답 데이터는 response.data
-        
       }
       else
       {
         console.log('검색어:', searchKeyword);
         const fieldValue = 'title';        
         response = await axios.get(`http://59.11.252.124:8070/essearch/get_keyword?indexName=${indexName}&field=${fieldValue}&keyword=${searchKeyword}`);
-        
       }
       
       const search_research = response.data.map((Data, index) => {
@@ -37,8 +30,6 @@ export const CompaniesSearch = ({setSearchResult}) => {
         const link = Data._source.link;      
         return { id, description,logo,title,link, key: index };
       });
-
-      
       setSearchResult(search_research);
       // console.log('검색 결과:', searchData);
     } catch (error) {

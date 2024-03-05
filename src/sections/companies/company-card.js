@@ -51,6 +51,14 @@ export const CompanyCard = (props) => {
       >
         자세히 보기
       </Button>
+      <Button 
+        onClick={handleButtonClick} 
+        fullWidth 
+        variant="contained" 
+        sx={{ mt: 2 , bgcolor: 'blue'}}
+      >
+        바로 구매하기
+      </Button>
      
     </Card>
   );
